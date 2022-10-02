@@ -11,7 +11,9 @@ interface User {
     accessCode: string;
     transfer: Transfer;
     files: File[];
-    role: UserRole
+    role: UserRole,
+    expiringDate: string,
+    hasActiveAccount: boolean
 }
 
 const DEFAULT_USER: User = {
@@ -28,7 +30,9 @@ const DEFAULT_USER: User = {
             size: 50,
         },
     },
-    role: UserRole.ADMIN
+    role: UserRole.ADMIN,
+    expiringDate: "2012-12-12 12:12:12",
+    hasActiveAccount: true
 };
 
 export default User;
