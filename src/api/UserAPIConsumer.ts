@@ -1,6 +1,7 @@
 "use strict";
 
 import User from "../models/User";
+import NewUserDTO from "../models/NewUserDTO";
 
 export default class UserAPIConsumer {
 
@@ -26,5 +27,18 @@ export default class UserAPIConsumer {
         });
 
         return await res.json()
+    }
+
+    public static async saveUser(user: NewUserDTO): Promise<void> {
+        const res: Response = await fetch(`${this.baseUrl}/api/v1/users/`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        });
+
+        console.log(await res.json())
     }
 }

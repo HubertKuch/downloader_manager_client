@@ -31,24 +31,36 @@ export default function Admin(): JSX.Element {
 
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Access code</th>
                         <th>Transfer</th>
                         <th>Files count</th>
                         <th>Role</th>
                         <th>Expiring date</th>
+                        <th>Has active account</th>
                     </tr>
                 </thead>
 
                 <tbody>
                 {
-                    users.map(({role, accessCode, transfer, files}) => {
+                    users.map(({
+                                   id,
+                                   role,
+                                   accessCode,
+                                   transfer,
+                                   files,
+                                   expiringDate,
+                                   hasActiveAccount
+                    }) => {
                         return (
                             <tr key={Math.random()}>
+                                <td>{id}</td>
                                 <td>{accessCode}</td>
                                 <td>{transfer.transfer.size} / {transfer.startTransfer.size} | {transfer.transfer.unit}</td>
                                 <td>{files.length}</td>
                                 <td>{role.valueOf()}</td>
-                                <td>12.12.2022</td>
+                                <td>{expiringDate}</td>
+                                <td>{hasActiveAccount ? "yes" : "no"}</td>
                             </tr>
                         );
                     })
