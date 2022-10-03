@@ -3,8 +3,6 @@ import File from "../models/File";
 import InformationSize from "../models/InformationSize";
 import Error from "../models/Error";
 import FileAPIConsumer from "../api/FileAPIConsumer";
-import {Simulate} from "react-dom/test-utils";
-import transitionEnd = Simulate.transitionEnd;
 
 export default function UserFileInList({file}: {file: File}): JSX.Element {
     const getFileSizeUnitAsHumanValue = (size: InformationSize): any => {
@@ -20,7 +18,7 @@ export default function UserFileInList({file}: {file: File}): JSX.Element {
     }
 
     return (
-        <tr key={Math.random()}>
+        <tr>
             <td>
                 {file.name}
             </td>

@@ -11,7 +11,7 @@ import {DEFAULT_USER, User} from "../models/User";
 
 export default function Main(): JSX.Element {
     const [files, setFiles] = useState<File[]>([]);
-    const [isAddFileModalOpen, setIsAddFileModalOpen] = useState<boolean>(false);
+    const [isAddFileModalOpen, setIsAddFileModalOpen] = useState<boolean>(true);
     const [user, setUser] = useState<User>(DEFAULT_USER);
 
     const getUserFiles = () => {
@@ -70,7 +70,7 @@ export default function Main(): JSX.Element {
                 <table>
                     <tbody>
                     {
-                        files.map(file => <UserFileInList file={file} />)
+                        files.map(file => <UserFileInList key={file.id} file={file} />)
                     }
                     </tbody>
                 </table>
