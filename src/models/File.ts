@@ -4,5 +4,6 @@ export default interface File {
     id: string;
     name: string;
     extension: string;
-    size: InformationSize
+    size: InformationSize;
+    path: string;
 }
