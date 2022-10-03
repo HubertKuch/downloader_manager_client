@@ -4,6 +4,7 @@ import AdminNav from "../components/AdminNav";
 import AccountForm from "../components/AccountForm";
 import Transfer from "../models/Transfer";
 import UserAPIConsumer from "../api/UserAPIConsumer";
+import dateFormat from "dateformat";
 
 export default function AdminCreateAccount(): JSX.Element {
 
@@ -28,7 +29,7 @@ export default function AdminCreateAccount(): JSX.Element {
         const newUserBody = {
             transfer: parsedTransfer,
             role: role,
-            expiringDate: `${expiringDate.getFullYear()}-${expiringDate.getMonth()}-${expiringDate.getDay()} 00:00:00`
+            expiringDate: dateFormat(expiringDate, "yyyy-mm-dd")+" 00:00:00"
         }
 
         await UserAPIConsumer.saveUser(newUserBody);

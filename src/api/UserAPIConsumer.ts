@@ -30,7 +30,7 @@ export default class UserAPIConsumer {
     }
 
     public static async saveUser(user: NewUserDTO): Promise<void> {
-        const res: Response = await fetch(`${this.baseUrl}/api/v1/users/`, {
+        await fetch(`${this.baseUrl}/api/v1/users/`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -38,7 +38,5 @@ export default class UserAPIConsumer {
             },
             body: JSON.stringify(user)
         });
-
-        console.log(await res.json())
     }
 }
