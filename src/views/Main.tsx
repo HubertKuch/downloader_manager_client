@@ -33,8 +33,12 @@ export default function Main(): JSX.Element {
         const url: string = (event.currentTarget.querySelector("[name=url]") as HTMLInputElement).value;
         const filename: string = (event.currentTarget.querySelector("[name=filename]") as HTMLInputElement).value;
         const errorContainer: HTMLDivElement = (event.currentTarget.querySelector(".error-container") as HTMLDivElement);
+        const wholeFolderCheckbox: HTMLInputElement = (event.currentTarget.querySelector("[name=\"whole-folder\"]") as HTMLInputElement);
 
-        const res: Error|File = await FileAPIConsumer.addFile({url, fileName: filename});
+        const res: Error|File = await FileAPIConsumer.addFile(
+            {url, fileName: filename},
+            wholeFolderCheckbox.checked
+        );
 
         if (res.hasOwnProperty("error")) {
             errorContainer.innerText = "Invalid data. Check url to folder and filename.";

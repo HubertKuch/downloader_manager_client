@@ -1,6 +1,5 @@
 import React from "react";
 import AuthController from "../auth/AuthController";
-import {redirect} from "react-router-dom";
 
 export default function Login(): JSX.Element {
 

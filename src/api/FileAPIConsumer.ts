@@ -1,8 +1,11 @@
 "use strict";
 
-import IncomingFileDTO from "../models/IncomingFileDTO";
+import { IncomingFileDTO } from "../models/IncomingFileDTO";
 import File from "../models/File";
 import Error from "../models/Error";
+import AddFileStrategy from "../models/AddFileStrategy";
+import {SimpleAddFileStrategy} from "./SimpleAddFileStrategy";
+import AddAllFilesFromFolderStrategy from "./AddAllFilesFromFolderStrategy";
 
 export default class FileAPIConsumer {
 
@@ -19,17 +22,15 @@ export default class FileAPIConsumer {
         return await res.json();
     }
 
-    public static async addFile(incomingFile: IncomingFileDTO): Promise<File|Error> {
-        const res = await fetch(`${this.baseUrl}/api/v1/files/`, {
-            method: "POST",
-            body: JSON.stringify(incomingFile),
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json"
-            }
-        })
+    public static async addFile(incomingFile: IncomingFileDTO, wholeFolder: boolean = false): Promise<File|Error> {
+        const strategies: { [key: string]: AddFileStrategy } = {
+            simple: new SimpleAddFileStrategy(),
+            wholeFolder: new AddAllFilesFromFolderStrategy()
+        };
 
-        return await res.json();
+        let strategy: AddFileStrategy = wholeFolder ? strategies.wholeFolder : strategies.simple;
+
+        return await strategy.addFile(incomingFile);
     }
 
     public static async downloadFile(fileId: string): Promise<File|Error> {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 interface AddFileFormProps {
     handler: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -7,6 +7,14 @@ interface AddFileFormProps {
 export default function AddFileForm({
     handler
 }: AddFileFormProps): JSX.Element {
+
+    const allFilesCheckbox = useRef<HTMLInputElement>(null);
+    const filesLabelRef = useRef<HTMLLabelElement>(null);
+
+    const showOrHideFileInput = () => {
+        filesLabelRef.current.classList.toggle("hidden");
+    }
+
     return (
         <form className={"grid gap-4"} onSubmit={handler}>
             <div className={"error-container text-red-400"}></div>
@@ -21,6 +29,16 @@ export default function AddFileForm({
             </label>
 
             <label>
+                All files in folder {' '}
+                <input
+                    name={"whole-folder"}
+                    ref={allFilesCheckbox}
+                    onChange={showOrHideFileInput}
+                    type="checkbox"
+                />
+            </label>
+            
+            <label ref={filesLabelRef}>
                 File name <br/>
                 <input
                     type={"text"}
