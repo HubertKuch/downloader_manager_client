@@ -53,14 +53,14 @@ export default function Admin(): JSX.Element {
                                    hasActiveAccount
                     }) => {
                         return (
-                            <tr key={Math.random()}>
+                            <tr key={id}>
                                 <td>{id}</td>
                                 <td>{accessCode}</td>
                                 <td>{transfer.transfer.size} / {transfer.startTransfer.size} | {transfer.transfer.unit}</td>
                                 <td>{files.length}</td>
                                 <td>{role.valueOf()}</td>
                                 <td>{expiringDate}</td>
-                                <td>{hasActiveAccount ? "yes" : "no"}</td>
+                                <td>{hasActiveAccount ? "yes" : (hasActiveAccount === null ? "yes" : "no")}</td>
                             </tr>
                         );
                     })
