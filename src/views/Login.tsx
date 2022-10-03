@@ -18,6 +18,10 @@ export default function Login(): JSX.Element {
             return;
         }
 
+        if (res.status === 401) {
+            errorDiv.innerText = "Your account expired. Contact with administrator.";
+        }
+
         localStorage.setItem("token", res.token.value);
 
         window.location.replace("/")
