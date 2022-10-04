@@ -23,7 +23,7 @@ export default class FileAPIConsumer {
         return await res.json();
     }
 
-    public static async addFile(incomingFile: IncomingFileDTO, wholeFolder: boolean = false): Promise<File|Error> {
+    public static async addFile(incomingFile: IncomingFileDTO, wholeFolder: boolean = false): Promise<Folder|Error> {
         const strategies: { [key: string]: AddFileStrategy } = {
             simple: new SimpleAddFileStrategy(),
             wholeFolder: new AddAllFilesFromFolderStrategy()

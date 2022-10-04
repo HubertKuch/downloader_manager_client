@@ -39,7 +39,7 @@ export default function Main(): JSX.Element {
         const errorContainer: HTMLDivElement = (event.currentTarget.querySelector(".error-container") as HTMLDivElement);
         const wholeFolderCheckbox: HTMLInputElement = (event.currentTarget.querySelector("[name=\"whole-folder\"]") as HTMLInputElement);
 
-        const res: Error|File = await FileAPIConsumer.addFile(
+        const res: Error|Folder = await FileAPIConsumer.addFile(
             {url, fileName: filename},
             wholeFolderCheckbox.checked
         );
