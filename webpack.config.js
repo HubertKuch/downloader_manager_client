@@ -14,15 +14,22 @@ module.exports = {
         historyApiFallback: true,
     },
     module: {
-        rules: [{
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
-        }, {
-            test: /\.tsx?$/,
-            use: 'ts-loader',
-            exclude: /node_modules/,
-        }, ]
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.css?$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
