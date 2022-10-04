@@ -30,3 +30,15 @@ tr>td {
     border-bottom: 2px solid rgba(76, 126, 196, 83%);
     padding: 1em 0 1em;
 }
+
+.folder {
+    border: 1px solid black;
+    padding: 10px;
+    grid-template-areas:
+            "meta links"
+            "files files";
+}
+
+.folder .files {
+    grid-area: files;
+}

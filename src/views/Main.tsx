@@ -8,19 +8,23 @@ import AddFileForm from "../components/AddFileForm";
 import Error from "../models/Error";
 import UserFileInList from "../components/UserFileInList";
 import {DEFAULT_USER, User} from "../models/User";
+import Folder from "../models/Folder";
 
 export default function Main(): JSX.Element {
-    const [files, setFiles] = useState<File[]>([]);
-    const [isAddFileModalOpen, setIsAddFileModalOpen] = useState<boolean>(true);
+    const [folders, setFolders] = useState<Folder[]>([]);
+    const [isAddFileModalOpen, setIsAddFileModalOpen] = useState<boolean>(false);
     const [user, setUser] = useState<User>(DEFAULT_USER);
 
     const getUserFiles = () => {
         const getFiles = async () => {
-            return await FileAPIConsumer.getUserFiles();
+            return await FileAPIConsumer.getUserFolders();
         }
 
         useEffect(() => {
-            getFiles().then(r => setFiles(r))
+            getFiles().then(r => {
+                setFolders(r)
+                console.log(r)
+            })
 
             return () => {
             };
@@ -46,7 +50,7 @@ export default function Main(): JSX.Element {
         }
 
         setIsAddFileModalOpen(false);
-        setFiles(await FileAPIConsumer.getUserFiles())
+        setFolders(await FileAPIConsumer.getUserFolders())
     }
 
     getUserFiles();
@@ -71,13 +75,11 @@ export default function Main(): JSX.Element {
                 </div>
             </header>
             <main className={"text-xl h-full scroll-auto"}>
-                <table>
-                    <tbody>
+                <div className={"w-full"}>
                     {
-                        files.map(file => <UserFileInList key={file.id} file={file} />)
+                        folders.map(file => <UserFileInList key={file.id} folder={file} />)
                     }
-                    </tbody>
-                </table>
+                </div>
             </main>
 
             <Modal title={"Add new file"} onClose={() => setIsAddFileModalOpen(false)} isOpen={isAddFileModalOpen}>

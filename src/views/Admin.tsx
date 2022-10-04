@@ -48,7 +48,7 @@ export default function Admin(): JSX.Element {
                                    role,
                                    accessCode,
                                    transfer,
-                                   files,
+                                   folders,
                                    expiringDate,
                                    hasActiveAccount
                     }) => {
@@ -57,7 +57,7 @@ export default function Admin(): JSX.Element {
                                 <td>{id}</td>
                                 <td>{accessCode}</td>
                                 <td>{transfer.transfer.size} / {transfer.startTransfer.size} | {transfer.transfer.unit}</td>
-                                <td>{files.length}</td>
+                                <td>{folders.length}</td>
                                 <td>{role.valueOf()}</td>
                                 <td>{expiringDate}</td>
                                 <td>{hasActiveAccount ? "yes" : (hasActiveAccount === null ? "yes" : "no")}</td>

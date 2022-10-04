@@ -1,5 +1,6 @@
 import File from "./File";
 import Transfer from "./Transfer";
+import Folder from "./Folder";
 
 enum UserRole {
     ADMIN = "ADMIN",
@@ -10,7 +11,7 @@ interface User {
     id: string;
     accessCode: string;
     transfer: Transfer;
-    files: File[];
+    folders: Folder[];
     role: UserRole,
     expiringDate: string,
     hasActiveAccount: boolean
@@ -18,7 +19,7 @@ interface User {
 
 const DEFAULT_USER: User = {
     accessCode: "",
-    files: [],
+    folders: [],
     id: "",
     transfer: {
         startTransfer: {
