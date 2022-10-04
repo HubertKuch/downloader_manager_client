@@ -9,6 +9,7 @@ import Error from "../models/Error";
 import UserFileInList from "../components/UserFileInList";
 import {DEFAULT_USER, User} from "../models/User";
 import Folder from "../models/Folder";
+import UserAPIConsumer from "../api/UserAPIConsumer";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
@@ -23,12 +24,23 @@ export default function Main(): JSX.Element {
         useEffect(() => {
             getFiles().then(r => {
                 setFolders(r)
-                console.log(r)
             })
 
             return () => {
             };
         }, []);
+    }
+
+    const getUser = () => {
+        const get = async () => {
+            return await UserAPIConsumer.getLoggedInUser();
+        }
+
+        useEffect(() => {
+            get().then(r => setUser(r));
+        }, []);
+
+        return () => {};
     }
 
     const addFileHandler = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -54,6 +66,7 @@ export default function Main(): JSX.Element {
     }
 
     getUserFiles();
+    getUser();
 
     return (
         <MainLayout nav={<MainNav user={user} />}>

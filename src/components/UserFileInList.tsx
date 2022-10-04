@@ -37,7 +37,7 @@ export default function UserFileInList({folder}: {folder: Folder}): JSX.Element 
                 {
                     folder.files.map((file) => {
                         return (
-                            <tr>
+                            <tr key={file.id}>
                                 <td>{file.name}</td>
                                 <td>{file.extension}</td>
                                 <td>{file.size.size}{' '}{getFileSizeUnitAsHumanValue(file.size)}</td>
