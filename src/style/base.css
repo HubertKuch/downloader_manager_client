@@ -32,6 +32,11 @@ tr>td {
     padding: 1em 0 1em;
 }
 
+.files {
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    gap: 10px;
+}
 
 .directory-anchor {
     display: grid;
@@ -53,5 +58,12 @@ tr>td {
     font-size: 1rem;
     color: #d5f0e9;
     opacity: 0.8;
+}
+
+@media screen and (max-width: 1055px) {
+    .files {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
 }
 

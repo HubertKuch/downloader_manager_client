@@ -38,6 +38,7 @@ export default createBrowserRouter([
     {
         path: "/create-account",
         element: <AdminCreateAccount />,
+        loader: adminLoader,
     },
     {
         path: "/logout",

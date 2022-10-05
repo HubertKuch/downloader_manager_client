@@ -11,13 +11,31 @@ import Folder from "../models/Folder";
 import UserAPIConsumer from "../api/UserAPIConsumer";
 import HeaderText from "../components/HeaderText";
 import FolderAnchor from "../components/FolderAnchor";
+import FileAnchor from "../components/FileAnchor";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
     const [isAddFileModalOpen, setIsAddFileModalOpen] = useState<boolean>(false);
     const [user, setUser] = useState<User>(DEFAULT_USER);
     const [isWaiting, setIsWaiting] = useState<boolean>(true);
+    const [showedFiles, setShowedFiles] = useState<JSX.Element[]>([]);
     const waitingLayer = useRef<HTMLDivElement>();
+
+    const mainContentRef = useRef<HTMLDivElement>();
+    const filesInFolderContentRef = useRef<HTMLDivElement>();
+
+    const params = new URLSearchParams(new URL(window.location.toString()).searchParams);
+    const folderId = params.get("id");
+
+    function showFolder(id: string) {
+        const folder: Folder = folders.find((current) => current.id === id);
+
+        mainContentRef.current.classList.toggle("hidden");
+        filesInFolderContentRef.current.classList.remove("hidden");
+
+        setShowedFiles(folder.files.map(file => <FileAnchor file={file} />));
+
+    }
 
     const getUserFiles = () => {
         const getFiles = async () => {
@@ -92,11 +110,17 @@ export default function Main(): JSX.Element {
                 </div>
             </header>
             <main className={"text-xl h-full scroll-auto"}>
-                <div className={"w-full"}>
+
+                <div ref={mainContentRef} className={"w-full grid files"}>
                     {
-                        folders.map(folder => <FolderAnchor folder={folder} />)
+                        folders.map(folder => <FolderAnchor showFolder={showFolder} folder={folder} />)
                     }
                 </div>
+
+                <div ref={filesInFolderContentRef} className={"w-full grid files hidden"}>
+                    {showedFiles}
+                </div>
+
             </main>
 
             <Modal title={"Add new file"} onClose={() => setIsAddFileModalOpen(false)} isOpen={isAddFileModalOpen}>
