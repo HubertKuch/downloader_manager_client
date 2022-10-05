@@ -45,4 +45,16 @@ export default class FileAPIConsumer {
 
         return await res.json();
     }
+
+    public static async downloadFolder(folderId: string): Promise<Folder> {
+        const res = await fetch(`${this.baseUrl}/api/v1/files/resource/whole-folder/${folderId}/`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            }
+        })
+
+        return await res.json();
+    }
 }

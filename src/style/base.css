@@ -8,6 +8,7 @@ body, html, #root {
     font-weight: 500;
     font-family: "Open Sans Regular", sans-serif;
     color: white;
+    background: #2c2842;
 }
 
 h1,

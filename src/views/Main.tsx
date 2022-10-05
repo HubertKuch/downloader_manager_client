@@ -17,24 +17,55 @@ export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
     const [isAddFileModalOpen, setIsAddFileModalOpen] = useState<boolean>(false);
     const [user, setUser] = useState<User>(DEFAULT_USER);
-    const [isWaiting, setIsWaiting] = useState<boolean>(true);
+    const [isWaiting, setIsWaiting] = useState<boolean>(false);
     const [showedFiles, setShowedFiles] = useState<JSX.Element[]>([]);
     const waitingLayer = useRef<HTMLDivElement>();
 
     const mainContentRef = useRef<HTMLDivElement>();
     const filesInFolderContentRef = useRef<HTMLDivElement>();
+    const actionsRef = useRef<HTMLDivElement>();
+    const downloadAnchorRef = useRef<HTMLAnchorElement>();
+    const downloadFolderRef = useRef<HTMLButtonElement>();
 
-    const params = new URLSearchParams(new URL(window.location.toString()).searchParams);
-    const folderId = params.get("id");
+    useEffect(() => {
+
+        if (isWaiting) {
+            waitingLayer.current.classList.remove("hidden");
+        } else {
+            waitingLayer.current.classList.add("hidden");
+        }
+
+    }, [ isWaiting ]);
 
     function showFolder(id: string) {
+        downloadAnchorRef.current.addEventListener("click", (e) => e.preventDefault());
+
         const folder: Folder = folders.find((current) => current.id === id);
 
         mainContentRef.current.classList.toggle("hidden");
         filesInFolderContentRef.current.classList.remove("hidden");
+        actionsRef.current.classList.remove("hidden")
+
+        downloadFolderRef.current.addEventListener("click", async () => {
+            const folderData: Folder = await FileAPIConsumer.downloadFolder(id);
+
+            folderData.files.forEach(file => {
+                const anchor: HTMLAnchorElement = document.createElement("a");
+                document.body.append(anchor);
+
+                console.log(file.path)
+
+                anchor.href = file.path;
+                anchor.download = '';
+                anchor.target = '_blank';
+
+                anchor.click();
+
+                anchor.remove();
+            });
+        });
 
         setShowedFiles(folder.files.map(file => <FileAnchor file={file} />));
-
     }
 
     const getUserFiles = () => {
@@ -66,6 +97,9 @@ export default function Main(): JSX.Element {
 
     const addFileHandler = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
+
+        setIsWaiting(true);
+
         waitingLayer.current.classList.toggle("hiden");
 
         const url: string = (event.currentTarget.querySelector("[name=url]") as HTMLInputElement).value;
@@ -77,6 +111,10 @@ export default function Main(): JSX.Element {
             {url, fileName: filename},
             wholeFolderCheckbox.checked
         );
+
+        if (res) {
+            setIsWaiting(false);
+        }
 
         if (res.hasOwnProperty("error")) {
             errorContainer.innerText = "Invalid data. Check url to folder and filename.";
@@ -95,6 +133,16 @@ export default function Main(): JSX.Element {
             <header className={"grid grid-cols-2 pb-5"}>
                 <div>
                     <HeaderText text={"Your files"} />
+
+                    <div ref={actionsRef} className={"actions mt-2 text-sm hidden"}>
+                        <button
+                            className={"border border-white rounded-full p-2 pl-3 pr-3 transition-all transition delay-100 ease-linear hover:border-green-500 mr-6"}
+                            ref={downloadFolderRef}
+                        >
+                            Download folder
+                            <a download ref={downloadAnchorRef}></a>
+                        </button>
+                    </div>
                 </div>
                 <div className={"text-right"}>
                     <button

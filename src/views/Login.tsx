@@ -21,6 +21,10 @@ export default function Login(): JSX.Element {
             errorDiv.innerText = "Your account expired. Contact with administrator.";
         }
 
+        if (res.hasOwnProperty("error")) {
+            errorDiv.innerText = "Error on login. Try again.";
+        }
+
         localStorage.setItem("token", res.token.value);
 
         window.location.replace("/")
@@ -42,14 +46,15 @@ export default function Login(): JSX.Element {
                         Access code <br/>
                         <input
                             placeholder={"cb984025-13c5-4e16-9b56-345bbc663ca1"}
+                            style={{background: "#323644"}}
                             type="text"
                             name={"accessCode"}
-                            className={"rounded outline-none border-none text-black p-0.5 w-full"}
+                            className={"rounded outline-none border-none p-2 w-full"}
                         />
                     </label>
                     <label>
                         <button
-                            style={{background: "rgba(76,126,196,0.84)", transform: "translateX(-50%)"}}
+                            style={{background: "#36a688", transform: "translateX(-50%)"}}
                             className={"pt-1 pb-1 pl-4 pr-4 rounded absolute left-1/2"}
                         >
                             Log in
