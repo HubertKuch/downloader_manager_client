@@ -53,6 +53,7 @@ export default function UserFileInList({folder}: {folder: Folder}): JSX.Element 
                                             }
 
                                             downloadButtonRef.current.setAttribute("href", (res as File).path);
+
                                             downloadButtonRef.current.click()
                                         }}
                                     >

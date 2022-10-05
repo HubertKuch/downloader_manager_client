@@ -1,4 +1,3 @@
-import File from "./File";
 import Transfer from "./Transfer";
 import Folder from "./Folder";
 
@@ -11,6 +10,7 @@ interface User {
     id: string;
     accessCode: string;
     transfer: Transfer;
+    otherTransferSizes: Transfer[];
     folders: Folder[];
     role: UserRole,
     expiringDate: string,
@@ -31,6 +31,7 @@ const DEFAULT_USER: User = {
             size: 50,
         },
     },
+    otherTransferSizes: [],
     role: UserRole.ADMIN,
     expiringDate: "2012-12-12 12:12:12",
     hasActiveAccount: true

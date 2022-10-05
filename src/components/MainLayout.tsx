@@ -4,7 +4,7 @@ export default function MainLayout({ children, nav }: { children: any, nav: JSX.
     return (
         <>
             {nav}
-            <div className={"h-full float-right p-4"} style={{width: "80%", background: "#E2E5E1"}}>
+            <div className={"min-h-full float-right p-4 scroll-auto"} style={{width: "85%", background: "#2c2842"}}>
                 {children}
             </div>
         </>
