@@ -30,7 +30,7 @@ export default function ({ file }: FolderAnchorProps){
             }}
         >
             <div className={"icon text-center"}>
-                <i className="fa-solid fa-file"></i>
+                <i className={FileUtils.pickIconClasses(file)}></i>
             </div>
             <div className={"title"}>
                 {file.name.length >= 12 ? file.name.substring(0, 12)+"..." : file.name}
