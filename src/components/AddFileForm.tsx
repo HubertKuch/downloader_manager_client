@@ -22,8 +22,9 @@ export default function AddFileForm({
                 Url to folder <br/>
                 <input
                     type="text"
+                    style={{background: "#323644"}}
                     name={"url"}
-                    className={"outline-none border-2 border-gray-400 rounded w-2/4"}
+                    className={"outline-none p-2 rounded-2xl w-2/4"}
                     placeholder={"https://chomikuj.pl/ExampleChomik/Test+folder/folder"}
                 />
             </label>
@@ -42,13 +43,14 @@ export default function AddFileForm({
                 File name <br/>
                 <input
                     type={"text"}
-                    className={"outline-none border-2 border-gray-400 rounded w-2/4"}
+                    style={{background: "#323644"}}
+                    className={"outline-none p-2 rounded-2xl w-2/4"}
                     placeholder={"Example file.txt"}
                     name={"filename"}
                 />
             </label>
 
-            <button className={"w-1/6 rounded p-1 text-white"} style={{background: '#456faa'}}>Add file</button>
+            <button className={"w-1/6 rounded p-1 text-white"} style={{background: '#f6985e'}}>Add file</button>
 
         </form>
     )

@@ -29,6 +29,7 @@ export default function Modal({ isOpen, onClose, children, title }: ModalProps):
                     rounded
                     p-4
                 `}
+                 style={{ background: "#2a263e" }}
             >
                 <header className={"grid grid-cols-2 grid-rows-1 mb-4"}>
                     <div>
