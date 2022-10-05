@@ -2,6 +2,7 @@ import React from "react";
 import NavLink from "./NavLink";
 import User from "../models/User";
 import ProgressBar from "./ProgressBar";
+import FileUtils from "../utils/FileUtils";
 
 export default function MainNav({ user } : { user: User }): JSX.Element {
 
@@ -24,7 +25,7 @@ export default function MainNav({ user } : { user: User }): JSX.Element {
                         {startTransfer}
                     </span>
                     <span>
-                        {' '}{user.otherTransferSizes[0]?.transfer?.unit}
+                        {' '}{FileUtils.getHumanInformationSize(user.otherTransferSizes[0]?.transfer)}
                     </span>
                 </div>
 

@@ -4,21 +4,10 @@ import InformationSize from "../models/InformationSize";
 import Error from "../models/Error";
 import FileAPIConsumer from "../api/FileAPIConsumer";
 import Folder from "../models/Folder";
+import FileUtils from "../utils/FileUtils";
 
 export default function UserFileInList({folder}: {folder: Folder}): JSX.Element {
     const downloadButtonRef = useRef<HTMLAnchorElement>(null);
-
-    const getFileSizeUnitAsHumanValue = (size: InformationSize): any => {
-        interface HumanValues {
-            [key: string]: string | undefined;
-        }
-
-        const HUMAN_VALUES: HumanValues = {
-            "KILO_BYTE": "kb",
-        };
-
-        return HUMAN_VALUES[size.unit];
-    }
 
     return (
         <div className={"grid grid-cols-2 folder"}>
@@ -40,7 +29,7 @@ export default function UserFileInList({folder}: {folder: Folder}): JSX.Element 
                             <tr key={file.id}>
                                 <td>{file.name}</td>
                                 <td>{file.extension}</td>
-                                <td>{file.size.size}{' '}{getFileSizeUnitAsHumanValue(file.size)}</td>
+                                <td>{file.size.size}{' '}{FileUtils.getHumanInformationSize(file.size)}</td>
                                 <td>
                                     <button
                                         className={"rounded p-2 ml-4"}
