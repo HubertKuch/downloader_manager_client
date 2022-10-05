@@ -32,14 +32,26 @@ tr>td {
     padding: 1em 0 1em;
 }
 
-.folder {
-    border: 1px solid black;
-    padding: 10px;
-    grid-template-areas:
-            "meta links"
-            "files files";
+
+.directory-anchor {
+    display: grid;
+    grid-template-areas: "icon" "title" "meta";
+    grid-template-rows: 70% 15% 15%;
 }
 
-.folder .files {
-    grid-area: files;
+.directory-anchor .icon {
+    grid-area: icon;
+    font-size: 80px;
 }
+
+.directory-anchor .title {
+    grid-area: title;
+}
+
+.directory-anchor .meta {
+    grid-area: meta;
+    font-size: 1rem;
+    color: #d5f0e9;
+    opacity: 0.8;
+}
+

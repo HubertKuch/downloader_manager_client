@@ -10,6 +10,7 @@ import {DEFAULT_USER, User} from "../models/User";
 import Folder from "../models/Folder";
 import UserAPIConsumer from "../api/UserAPIConsumer";
 import HeaderText from "../components/HeaderText";
+import FolderAnchor from "../components/FolderAnchor";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
@@ -93,7 +94,7 @@ export default function Main(): JSX.Element {
             <main className={"text-xl h-full scroll-auto"}>
                 <div className={"w-full"}>
                     {
-                        folders.map(file => <UserFileInList key={file.id} folder={file} />)
+                        folders.map(folder => <FolderAnchor folder={folder} />)
                     }
                 </div>
             </main>
