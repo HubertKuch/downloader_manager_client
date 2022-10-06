@@ -3,6 +3,7 @@ import MainLayout from "../components/MainLayout";
 import AdminNav from "../components/AdminNav";
 import User from "../models/User";
 import UserAPIConsumer from "../api/UserAPIConsumer";
+import FileUtils from "../utils/FileUtils";
 
 export default function Admin(): JSX.Element {
     const [users, setUsers] = useState<User[]>([]);
@@ -50,16 +51,17 @@ export default function Admin(): JSX.Element {
                                    transfer,
                                    folders,
                                    expiringDate,
-                                   hasActiveAccount
+                                   hasActiveAccount,
+                                   otherTransferSizes
                     }) => {
                         return (
                             <tr key={id}>
                                 <td>{id}</td>
                                 <td>{accessCode}</td>
-                                <td>{transfer.transfer.size} / {transfer.startTransfer.size} | {transfer.transfer.unit}</td>
+                                <td>{otherTransferSizes[0]?.transfer?.size} / {otherTransferSizes[0]?.startTransfer?.size} {FileUtils.getHumanInformationSize(otherTransferSizes[0]?.startTransfer)}</td>
                                 <td>{folders.reduce((previousValue, currentValue) => previousValue+currentValue.files.length, 0)}</td>
                                 <td>{role.valueOf()}</td>
-                                <td>{expiringDate}</td>
+                                <td>{new Date(expiringDate).toLocaleString()}</td>
                                 <td>{hasActiveAccount ? "yes" : (hasActiveAccount === null ? "yes" : "no")}</td>
                             </tr>
                         );
