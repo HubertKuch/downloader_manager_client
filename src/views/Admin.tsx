@@ -21,6 +21,13 @@ export default function Admin(): JSX.Element {
         return () => {};
     }, []);
 
+    const onCopy = (ev: React.MouseEvent<HTMLSpanElement>) => {
+        const accessCode = ev.currentTarget.parentElement.textContent;
+
+        window.navigator.clipboard.writeText(accessCode)
+            .then();
+    };
+
     return (
         <MainLayout nav={<AdminNav />}>
 
@@ -57,7 +64,15 @@ export default function Admin(): JSX.Element {
                         return (
                             <tr key={id}>
                                 <td>{id}</td>
-                                <td>{accessCode}</td>
+                                <td>
+                                    {accessCode}
+                                    <span
+                                        className={"ml-4 hover:text-blue-400 transition-all delay-75 ease-linear cursor-pointer"}
+                                        onClick={onCopy}
+                                    >
+                                        <i className="fa-regular fa-copy"></i>
+                                    </span>
+                                </td>
                                 <td>{otherTransferSizes[0]?.transfer?.size} / {otherTransferSizes[0]?.startTransfer?.size} {FileUtils.getHumanInformationSize(otherTransferSizes[0]?.startTransfer)}</td>
                                 <td>{folders.reduce((previousValue, currentValue) => previousValue+currentValue.files.length, 0)}</td>
                                 <td>{role.valueOf()}</td>
@@ -68,9 +83,7 @@ export default function Admin(): JSX.Element {
                     })
                 }
                 </tbody>
-
             </table>
-
         </MainLayout>
     );
 }

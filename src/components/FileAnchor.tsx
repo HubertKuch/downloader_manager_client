@@ -24,9 +24,7 @@ export default function ({ file }: FolderAnchorProps){
                     return;
                 }
 
-                downloadRef.current.setAttribute("href", (res as File).path);
-
-                downloadRef.current.click()
+                window.open((res as File).path);
             }}
         >
             <div className={"icon text-center"}>
@@ -38,6 +36,7 @@ export default function ({ file }: FolderAnchorProps){
             <div className={"meta"}>
                 {file.size.size} {FileUtils.getHumanInformationSize(file.size)}
                 <a
+                    download
                     ref={downloadRef}
                 ></a>
             </div>

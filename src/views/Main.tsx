@@ -24,7 +24,6 @@ export default function Main(): JSX.Element {
     const mainContentRef = useRef<HTMLDivElement>();
     const filesInFolderContentRef = useRef<HTMLDivElement>();
     const actionsRef = useRef<HTMLDivElement>();
-    const downloadAnchorRef = useRef<HTMLAnchorElement>();
     const downloadFolderRef = useRef<HTMLButtonElement>();
 
     useEffect(() => {
@@ -38,8 +37,6 @@ export default function Main(): JSX.Element {
     }, [ isWaiting ]);
 
     function showFolder(id: string) {
-        downloadAnchorRef.current.addEventListener("click", (e) => e.preventDefault());
-
         const folder: Folder = folders.find((current) => current.id === id);
 
         mainContentRef.current.classList.toggle("hidden");
@@ -47,22 +44,10 @@ export default function Main(): JSX.Element {
         actionsRef.current.classList.remove("hidden")
 
         downloadFolderRef.current.addEventListener("click", async () => {
-            const folderData: Folder = await FileAPIConsumer.downloadFolder(id);
-
-            folderData.files.forEach(file => {
-                const anchor: HTMLAnchorElement = document.createElement("a");
-                document.body.append(anchor);
-
-                console.log(file.path)
-
-                anchor.href = file.path;
-                anchor.download = '';
-                anchor.target = '_blank';
-
-                anchor.click();
-
-                anchor.remove();
-            });
+            filesInFolderContentRef
+                .current
+                .querySelectorAll(".directory-anchor")
+                .forEach(el => (el as HTMLDivElement).click());
         });
 
         setShowedFiles(folder.files.map(file => <FileAnchor file={file} />));
@@ -140,7 +125,6 @@ export default function Main(): JSX.Element {
                             ref={downloadFolderRef}
                         >
                             Download folder
-                            <a download ref={downloadAnchorRef}></a>
                         </button>
                     </div>
                 </div>
