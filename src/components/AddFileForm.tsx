@@ -10,10 +10,16 @@ export default function AddFileForm({
 
     const allFilesCheckbox = useRef<HTMLInputElement>(null);
     const filesLabelRef = useRef<HTMLLabelElement>(null);
+    const hasPasswordCheckboxRef = useRef<HTMLInputElement>(null);
+    const passwordLabelRef = useRef<HTMLLabelElement>(null);
 
     const showOrHideFileInput = () => {
         filesLabelRef.current.classList.toggle("hidden");
     }
+
+    const showOrHidePasswordLabel = () => {
+        passwordLabelRef.current.classList.toggle("hidden");
+    };
 
     return (
         <form className={"grid gap-4"} onSubmit={handler}>
@@ -47,6 +53,26 @@ export default function AddFileForm({
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                     placeholder={"Example file.txt"}
                     name={"filename"}
+                />
+            </label>
+
+            <label>
+                With password{' '}
+                <input
+                    ref={hasPasswordCheckboxRef}
+                    type="checkbox"
+                    name={"has-password"}
+                    onChange={showOrHidePasswordLabel}
+                />
+            </label>
+
+            <label ref={passwordLabelRef} className={"hidden"}>
+                Password <br/>
+                <input
+                    type="text"
+                    name={"password"}
+                    style={{background: "#323644"}}
+                    className={"outline-none p-2 rounded-2xl w-2/4"}
                 />
             </label>
 
