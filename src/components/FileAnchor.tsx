@@ -15,6 +15,7 @@ export default function ({ file }: FolderAnchorProps){
         <div
             className={"w-40 h-40 p-1 rounded directory-anchor"}
             style={{ background: "#30b88f" }}
+            data-context-menu-actions-name={"file-actions"}
             title={file.name}
             onClick={async () => {
                 const res: Error|File = await FileAPIConsumer.downloadFile(file.id);

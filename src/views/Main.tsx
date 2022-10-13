@@ -5,7 +5,6 @@ import MainLayout from "../components/MainLayout";
 import Modal from "../components/Modal";
 import AddFileForm from "../components/AddFileForm";
 import Error from "../models/Error";
-import UserFileInList from "../components/UserFileInList";
 import {DEFAULT_USER, User} from "../models/User";
 import Folder from "../models/Folder";
 import UserAPIConsumer from "../api/UserAPIConsumer";
@@ -50,7 +49,7 @@ export default function Main(): JSX.Element {
                 .forEach(el => (el as HTMLDivElement).click());
         });
 
-        setShowedFiles(folder.files.map(file => <FileAnchor file={file} />));
+        setShowedFiles(folder.files.map(file => <FileAnchor key={Math.random()} file={file} />));
     }
 
     const getUserFiles = () => {
@@ -145,7 +144,7 @@ export default function Main(): JSX.Element {
 
                 <div ref={mainContentRef} className={"w-full grid files"}>
                     {
-                        folders.map(folder => <FolderAnchor showFolder={showFolder} folder={folder} />)
+                        folders.map(folder => <FolderAnchor key={Math.random()} showFolder={showFolder} folder={folder} />)
                     }
                 </div>
 
