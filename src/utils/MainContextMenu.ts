@@ -3,29 +3,15 @@ import ContextMenuAction from "./ContextMenuAction";
 import ContextMenu from "./ContextMenu";
 import ContextMenuState from "./ContextMenuState";
 import CartesianPoint from "./CartesianPoint";
-
-const FILES_CONTEXT_MENU_ACTIONS: ContextMenuAction[] = [
-    {
-        id: "DOWNLOAD",
-        name: "Download",
-        actionHandler: (event: MouseEvent) => {
-            console.log("File download")
-        }
-    },
-    {
-        id: "REMOVE",
-        name: "Remove",
-        actionHandler: (event: MouseEvent) => {
-            console.log("File remove action")
-        }
-    },
-];
+import FILES_CONTEXT_MENU_ACTIONS from "../actions/fileContextMenuActions";
+import FOLDER_CONTEXT_MENU_ACTIONS from "../actions/folderContextMenuActions";
 
 export default class MainContextMenu implements ContextMenu {
     private actions: ContextMenuAction[];
     private readonly definedActions: { [key: string]: ContextMenuAction[] } = {
-        "file-actions": FILES_CONTEXT_MENU_ACTIONS
-    }
+        "file-actions": FILES_CONTEXT_MENU_ACTIONS,
+        "folder-actions": FOLDER_CONTEXT_MENU_ACTIONS
+    };
     private state: ContextMenuState = {
         isHide: true,
         position: {
@@ -75,14 +61,14 @@ export default class MainContextMenu implements ContextMenu {
         return target;
     }
 
-    private prepareSingleElement(action: ContextMenuAction): HTMLDivElement {
+    private prepareSingleElement(action: ContextMenuAction, target: HTMLElement): HTMLDivElement {
         const root = document.createElement("div");
 
         root.classList.add("context-menu-action");
         root.textContent = action.name;
         root.setAttribute("context-menu-action-id", action.id);
         root.addEventListener("click", (event: MouseEvent) => {
-            action.actionHandler(event);
+            action.actionHandler(event, target);
             this.hide();
         });
 
@@ -96,10 +82,10 @@ export default class MainContextMenu implements ContextMenu {
 
         if (!target) return null;
 
-        const choosedActions: ContextMenuAction[] = this.definedActions[target.getAttribute("data-context-menu-actions-name")] ?? [];
+        const chosenActions: ContextMenuAction[] = this.definedActions[target.getAttribute("data-context-menu-actions-name")] ?? [];
 
         this.contextMenuElement.current.append(
-            ...choosedActions.map(action => this.prepareSingleElement(action)) ?? null
+            ...chosenActions.map(action => this.prepareSingleElement(action, target)) ?? null
         );
 
         return target;

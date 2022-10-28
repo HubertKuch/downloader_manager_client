@@ -11,6 +11,7 @@ import UserAPIConsumer from "../api/UserAPIConsumer";
 import HeaderText from "../components/HeaderText";
 import FolderAnchor from "../components/FolderAnchor";
 import FileAnchor from "../components/FileAnchor";
+import ContextMenuElement from "../components/ContextMenuElement";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
@@ -18,12 +19,13 @@ export default function Main(): JSX.Element {
     const [user, setUser] = useState<User>(DEFAULT_USER);
     const [isWaiting, setIsWaiting] = useState<boolean>(false);
     const [showedFiles, setShowedFiles] = useState<JSX.Element[]>([]);
-    const waitingLayer = useRef<HTMLDivElement>();
 
+    const waitingLayer = useRef<HTMLDivElement>();
     const mainContentRef = useRef<HTMLDivElement>();
     const filesInFolderContentRef = useRef<HTMLDivElement>();
     const actionsRef = useRef<HTMLDivElement>();
     const downloadFolderRef = useRef<HTMLButtonElement>();
+    const contextMenuRef = useRef<HTMLDivElement>();
 
     useEffect(() => {
 
@@ -163,6 +165,7 @@ export default function Main(): JSX.Element {
             >
                 Waiting...
             </div>
+            <ContextMenuElement ref={contextMenuRef} />
         </MainLayout>
     );
 }
