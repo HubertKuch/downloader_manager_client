@@ -7,10 +7,11 @@ import AddFileStrategy from "../models/AddFileStrategy";
 import {SimpleAddFileStrategy} from "./SimpleAddFileStrategy";
 import AddAllFilesFromFolderStrategy from "./AddAllFilesFromFolderStrategy";
 import Folder from "../models/Folder";
+import BaseApiSettings from "./BaseApiSettings";
 
 export default class FileAPIConsumer {
 
-    private static baseUrl: string = "http://159.65.126.98:8080"
+    private static baseUrl: string = BaseApiSettings.BASE_URL;
 
     public static async getUserFolders(): Promise<Folder[]> {
         const res = await fetch(`${this.baseUrl}/api/v1/files/`, {

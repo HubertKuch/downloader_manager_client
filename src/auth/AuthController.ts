@@ -2,10 +2,11 @@
 
 import User, {UserRole} from "../models/User";
 import UserAPIConsumer from "../api/UserAPIConsumer";
+import BaseApiSettings from "../api/BaseApiSettings";
 
 export default class AuthController {
 
-    private static baseUrl: string = "http://159.65.126.98:8080"
+    private static baseUrl: string = BaseApiSettings.BASE_URL;
 
     public static isLoggedIn(): boolean {
         return localStorage.getItem("token") !== null;

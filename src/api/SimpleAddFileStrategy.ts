@@ -3,10 +3,11 @@ import File from "../models/File";
 import Error from "../models/Error";
 import AddFileStrategy from "../models/AddFileStrategy";
 import Folder from "../models/Folder";
+import BaseApiSettings from "./BaseApiSettings";
 
 export class SimpleAddFileStrategy implements AddFileStrategy {
 
-    private baseUrl: string = "http://159.65.126.98:8080"
+    private baseUrl: string = BaseApiSettings.BASE_URL;
 
     public async addFile(incomingFile: IncomingFileDTO|IncomingFolderDTO): Promise<Folder|Error> {
 
