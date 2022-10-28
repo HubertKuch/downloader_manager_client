@@ -9,7 +9,7 @@ export default function Admin(): JSX.Element {
     const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
-
+        console.log(1)
         const getUsers = async () => {
             const users: User[] = await UserAPIConsumer.getUsers();
             console.log(users)

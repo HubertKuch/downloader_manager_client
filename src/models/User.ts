@@ -1,5 +1,6 @@
 import Transfer from "./Transfer";
 import Folder from "./Folder";
+import History from "./History";
 
 enum UserRole {
     ADMIN = "ADMIN",
@@ -15,6 +16,7 @@ interface User {
     role: UserRole,
     expiringDate: string,
     hasActiveAccount: boolean
+    histories: History[];
 }
 
 const DEFAULT_USER: User = {
@@ -34,7 +36,8 @@ const DEFAULT_USER: User = {
     otherTransferSizes: [],
     role: UserRole.ADMIN,
     expiringDate: "2012-12-12 12:12:12",
-    hasActiveAccount: true
+    hasActiveAccount: true,
+    histories: [],
 };
 
 export default User;
