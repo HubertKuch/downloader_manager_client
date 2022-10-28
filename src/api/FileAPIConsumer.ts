@@ -47,6 +47,32 @@ export default class FileAPIConsumer {
         return await res.json();
     }
 
+    public static async removeFile(folderId: string, fileId: string): Promise<File|Error> {
+        const res = await fetch(`${this.baseUrl}/api/v1/files/file/`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({folderId, fileId})
+        });
+
+        return await res.json();
+    }
+
+    public static async removeFolder(folderId: string): Promise<File|Error> {
+        const res = await fetch(`${this.baseUrl}/api/v1/files/folder/`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({folderId})
+        });
+
+        return await res.json();
+    }
+
     public static async downloadFolder(folderId: string): Promise<Folder> {
         const res = await fetch(`${this.baseUrl}/api/v1/files/resource/whole-folder/${folderId}/`, {
             method: "GET",

@@ -51,7 +51,7 @@ export default function Main(): JSX.Element {
                 .forEach(el => (el as HTMLDivElement).click());
         });
 
-        setShowedFiles(folder.files.map(file => <FileAnchor key={Math.random()} file={file} />));
+        setShowedFiles(folder.files.map(file => <FileAnchor key={Math.random()} folder={folder} file={file} />));
     }
 
     const getUserFiles = () => {

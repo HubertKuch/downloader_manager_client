@@ -16,8 +16,12 @@ const FILES_CONTEXT_MENU_ACTIONS: ContextMenuAction[] = [
     {
         id: "REMOVE",
         name: "Remove",
-        actionHandler: (event: MouseEvent) => {
-            console.log("File remove action")
+        actionHandler: async (event: MouseEvent, contextMenuTarget: HTMLElement) => {
+            const fileId: string = contextMenuTarget.getAttribute("data-file-id");
+            const folderId: string = contextMenuTarget.getAttribute("data-folder-id");
+
+            await FileAPIConsumer.removeFile(folderId, fileId);
+            window.location.reload()
         }
     },
 ];

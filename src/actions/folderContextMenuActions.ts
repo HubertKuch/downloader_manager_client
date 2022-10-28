@@ -4,14 +4,14 @@ const FOLDER_CONTEXT_MENU_ACTIONS: ContextMenuAction[] = [
     {
         id: "DOWNLOAD",
         name: "Download",
-        actionHandler: () => {
+        actionHandler: async (event: MouseEvent, contextMenuTarget: HTMLElement) => {
 
         }
     },
     {
         id: "REMOVE",
         name: "Remove",
-        actionHandler: () => {
+        actionHandler: async (event: MouseEvent, contextMenuTarget: HTMLElement) => {
 
         }
     }

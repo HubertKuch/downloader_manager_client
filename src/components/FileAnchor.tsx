@@ -3,12 +3,14 @@ import File from "../models/File";
 import Error from "../models/Error";
 import FileAPIConsumer from "../api/FileAPIConsumer";
 import FileUtils from "../utils/FileUtils";
+import Folder from "../models/Folder";
 
 interface FolderAnchorProps {
     file: File;
+    folder: Folder;
 }
 
-export default function ({ file }: FolderAnchorProps){
+export default function ({ file, folder }: FolderAnchorProps){
     const downloadRef = useRef<HTMLAnchorElement>();
 
     return (
@@ -17,6 +19,7 @@ export default function ({ file }: FolderAnchorProps){
             style={{ background: "#30b88f" }}
             data-context-menu-actions-name={"file-actions"}
             data-file-id={file.id}
+            data-folder-id={folder.id}
             title={file.name}
             onClick={async () => {
                 const res: Error|File = await FileAPIConsumer.downloadFile(file.id);
