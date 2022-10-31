@@ -29,7 +29,7 @@ export default function ({ history }: { history: History }): JSX.Element {
     }
 
     return (
-        <div className={"w-full rounded mt-4 p-3 text-xl"} style={{background: getHistoryColor(history)}}>
+        <div className={"w-full rounded-xl mt-4 p-3 text-xl"} style={{background: getHistoryColor(history)}}>
             <span>
                 {new Date(history.at).toLocaleString()}
             </span>
