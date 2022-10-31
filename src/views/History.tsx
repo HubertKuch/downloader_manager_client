@@ -31,7 +31,7 @@ export default function History(): JSX.Element {
                     <HeaderText text={"History"} />
                 </div>
             </header>
-            { user.histories.map(history => <SingleHistory history={history} />) }
+            { user.histories.reverse().map(history => <SingleHistory history={history} />) }
         </MainLayout>
     );
 }
