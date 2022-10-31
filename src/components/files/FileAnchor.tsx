@@ -4,6 +4,7 @@ import Error from "../../models/Error";
 import FileAPIConsumer from "../../api/FileAPIConsumer";
 import FileUtils from "../../utils/FileUtils";
 import Folder from "../../models/Folder";
+import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
 
 interface FolderAnchorProps {
     file: File;
@@ -16,7 +17,7 @@ export default function ({ file, folder }: FolderAnchorProps){
     return (
         <div
             className={"w-40 h-40 p-1 rounded directory-anchor"}
-            style={{ background: "#30b88f" }}
+            style={{ background: ChosenThemeSettings.FILE_COLOR }}
             data-context-menu-actions-name={"file-actions"}
             data-file-id={file.id}
             data-folder-id={folder.id}

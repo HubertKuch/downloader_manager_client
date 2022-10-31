@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
 
 interface AddFileFormProps {
     handler: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -28,7 +29,7 @@ export default function AddFileForm({
                 Url to folder <br/>
                 <input
                     type="text"
-                    style={{background: "#323644"}}
+                    style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     name={"url"}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                     placeholder={"https://chomikuj.pl/ExampleChomik/Test+folder/folder"}
@@ -49,7 +50,7 @@ export default function AddFileForm({
                 File name <br/>
                 <input
                     type={"text"}
-                    style={{background: "#323644"}}
+                    style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                     placeholder={"Example file.txt"}
                     name={"filename"}
@@ -71,12 +72,12 @@ export default function AddFileForm({
                 <input
                     type="text"
                     name={"password"}
-                    style={{background: "#323644"}}
+                    style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                 />
             </label>
 
-            <button className={"w-1/6 rounded p-1 text-white"} style={{background: '#f6985e'}}>Add file</button>
+            <button className={"w-1/6 rounded p-1 text-white"} style={{background: ChosenThemeSettings.SUBMIT_BUTTON_COLOR}}>Add file</button>
 
         </form>
     )

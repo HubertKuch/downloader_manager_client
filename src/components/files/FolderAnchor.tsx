@@ -1,5 +1,6 @@
 import React from "react";
 import Folder from "../../models/Folder";
+import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
 
 interface FolderAnchorProps {
     folder: Folder;
@@ -13,7 +14,7 @@ export default function ({ folder, showFolder }: FolderAnchorProps){
             data-context-menu-actions-name={"folder-actions"}
             data-folder-id={folder.id}
             onClick={() => showFolder(folder.id)} className={"w-40 h-40 p-1 rounded directory-anchor"}
-            style={{ background: "#30b88f" }}
+            style={{ background: ChosenThemeSettings.FOLDER_COLOR }}
         >
             <div className={"icon text-center"}>
                 <i className="fa-solid fa-folder"></i>
