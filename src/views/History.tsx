@@ -16,7 +16,7 @@ export default function History(): JSX.Element {
         useEffect(() => {
             get().then(r => {
                 setUser(r)
-                console.log(r.histories)
+                
             });
             return () => {};
         }, []);

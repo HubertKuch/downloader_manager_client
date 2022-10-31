@@ -28,7 +28,7 @@ export default function Main(): JSX.Element {
     const contextMenuRef = useRef<HTMLDivElement>();
 
     useEffect(() => {
-        console.log(2)
+        
         if (isWaiting) {
             waitingLayer.current.classList.remove("hidden");
         } else {
@@ -60,7 +60,7 @@ export default function Main(): JSX.Element {
         }
 
         useEffect(() => {
-            console.log(3)
+            
             getFiles().then(r => {
                 setFolders(r)
             })
@@ -76,7 +76,7 @@ export default function Main(): JSX.Element {
         }
 
         useEffect(() => {
-            console.log(4)
+            
             get().then(r => setUser(r));
         }, []);
 

@@ -25,7 +25,7 @@ export default function ({ file, folder }: FolderAnchorProps){
                 const res: Error|File = await FileAPIConsumer.downloadFile(file.id);
 
                 if (res.hasOwnProperty("error")) {
-                    console.log(res)
+                    
                     return;
                 }
 
