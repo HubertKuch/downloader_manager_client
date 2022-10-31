@@ -9,11 +9,20 @@ import Admin from "./views/Admin";
 import AdminCreateAccount from "./views/AdminCreateAccount";
 import History from "./views/History";
 import Settings from "./views/Settings";
+import UserAPIConsumer from "./api/UserAPIConsumer";
 
 const isLoggedInLoader = async () => {
     if (!AuthController.isLoggedIn()) {
         return redirect("/login")
     }
+
+    const get = async () => {
+        return await UserAPIConsumer.getLoggedInUser();
+    }
+
+    await get().then(user => {
+        localStorage.setItem("user", JSON.stringify(user));
+    });
 };
 
 const adminLoader = async () => {

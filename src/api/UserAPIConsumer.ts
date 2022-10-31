@@ -31,4 +31,8 @@ export default class UserAPIConsumer {
             body: JSON.stringify(user)
         });
     }
+
+    public static getUserFromStorage(): User {
+        return JSON.parse(localStorage.getItem("user"));
+    }
 }

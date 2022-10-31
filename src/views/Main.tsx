@@ -17,7 +17,7 @@ import ChosenThemeSettings from "../settings/ChosenThemeSettings";
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
     const [isAddFileModalOpen, setIsAddFileModalOpen] = useState<boolean>(false);
-    const [user, setUser] = useState<User>(DEFAULT_USER);
+    const [user, setUser] = useState<User>(UserAPIConsumer.getUserFromStorage());
     const [isWaiting, setIsWaiting] = useState<boolean>(false);
     const [showedFiles, setShowedFiles] = useState<JSX.Element[]>([]);
 
@@ -71,19 +71,6 @@ export default function Main(): JSX.Element {
         }, []);
     }
 
-    const getUser = () => {
-        const get = async () => {
-            return await UserAPIConsumer.getLoggedInUser();
-        }
-
-        useEffect(() => {
-            
-            get().then(r => setUser(r));
-        }, []);
-
-        return () => {};
-    }
-
     const addFileHandler = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
 
@@ -115,7 +102,6 @@ export default function Main(): JSX.Element {
     }
 
     getUserFiles();
-    getUser();
 
     return (
         <MainLayout nav={<MainNav user={user} />}>

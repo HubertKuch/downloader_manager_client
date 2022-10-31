@@ -7,22 +7,7 @@ import HeaderText from "../components/utils/HeaderText";
 import SingleHistory from "../components/SingleHistory";
 
 export default function History(): JSX.Element {
-    const [user, setUser] = useState<User>(DEFAULT_USER);
-    const getUser = () => {
-        const get = async () => {
-            return await UserAPIConsumer.getLoggedInUser();
-        }
-
-        useEffect(() => {
-            get().then(r => {
-                setUser(r)
-                
-            });
-            return () => {};
-        }, []);
-    }
-
-    getUser()
+    const [user, setUser] = useState<User>(UserAPIConsumer.getUserFromStorage());
 
     return (
         <MainLayout nav={<MainNav user={user} />}>
