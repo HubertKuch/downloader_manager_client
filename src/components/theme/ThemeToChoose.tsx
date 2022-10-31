@@ -20,7 +20,7 @@ export default function ThemeToChoose(props: ThemeToChooseProps): JSX.Element {
 
     return (
         <div ref={ref}
-             className={"rounded-full h-10 w-10 m-2 relative inline-block cursor-pointer"}
+             className={"rounded-full h-10 w-10 m-2 relative inline-block cursor-pointer hover:border-4 hover:border-white transition-all delay-[60] ease-out border border-black"}
              style={{background: props.theme.DOMAIN_COLOR}}
         />
     );
