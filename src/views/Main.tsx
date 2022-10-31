@@ -1,17 +1,17 @@
 import React, {useEffect, useRef, useState} from "react";
-import MainNav from "../components/MainNav";
+import MainNav from "../components/nav/MainNav";
 import FileAPIConsumer from "../api/FileAPIConsumer";
-import MainLayout from "../components/MainLayout";
-import Modal from "../components/Modal";
-import AddFileForm from "../components/AddFileForm";
+import MainLayout from "../components/layouts/MainLayout";
+import Modal from "../components/utils/Modal";
+import AddFileForm from "../components/forms/AddFileForm";
 import Error from "../models/Error";
 import {DEFAULT_USER, User} from "../models/User";
 import Folder from "../models/Folder";
 import UserAPIConsumer from "../api/UserAPIConsumer";
-import HeaderText from "../components/HeaderText";
-import FolderAnchor from "../components/FolderAnchor";
-import FileAnchor from "../components/FileAnchor";
-import ContextMenuElement from "../components/ContextMenuElement";
+import HeaderText from "../components/utils/HeaderText";
+import FolderAnchor from "../components/files/FolderAnchor";
+import FileAnchor from "../components/files/FileAnchor";
+import ContextMenuElement from "../components/contextMenu/ContextMenuElement";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import MainNav from "../components/MainNav";
-import MainLayout from "../components/MainLayout";
+import MainNav from "../components/nav/MainNav";
+import MainLayout from "../components/layouts/MainLayout";
 import {DEFAULT_USER, User} from "../models/User";
 import UserAPIConsumer from "../api/UserAPIConsumer";
-import HeaderText from "../components/HeaderText";
+import HeaderText from "../components/utils/HeaderText";
 import SingleHistory from "../components/SingleHistory";
 
 export default function History(): JSX.Element {

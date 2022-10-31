@@ -1,9 +1,9 @@
 import React, {useRef} from "react";
-import File from "../models/File";
-import Error from "../models/Error";
-import FileAPIConsumer from "../api/FileAPIConsumer";
-import FileUtils from "../utils/FileUtils";
-import Folder from "../models/Folder";
+import File from "../../models/File";
+import Error from "../../models/Error";
+import FileAPIConsumer from "../../api/FileAPIConsumer";
+import FileUtils from "../../utils/FileUtils";
+import Folder from "../../models/Folder";
 
 interface FolderAnchorProps {
     file: File;

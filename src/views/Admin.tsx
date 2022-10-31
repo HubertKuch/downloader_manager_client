@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import MainLayout from "../components/MainLayout";
-import AdminNav from "../components/AdminNav";
+import MainLayout from "../components/layouts/MainLayout";
+import AdminNav from "../components/nav/AdminNav";
 import User from "../models/User";
 import UserAPIConsumer from "../api/UserAPIConsumer";
 import FileUtils from "../utils/FileUtils";

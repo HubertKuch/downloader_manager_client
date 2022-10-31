@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
-import ContextMenuElement from "./ContextMenuElement";
-import ContextMenu from "../utils/ContextMenu";
-import MainContextMenu from "../utils/MainContextMenu";
+import ContextMenuElement from "../contextMenu/ContextMenuElement";
+import ContextMenu from "../../utils/ContextMenu";
+import MainContextMenu from "../../utils/MainContextMenu";
 
 export default function MainLayout({ children, nav }: { children: any, nav: JSX.Element }): JSX.Element {
     const mainRef = useRef<HTMLDivElement>(null);

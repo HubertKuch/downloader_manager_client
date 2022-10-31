@@ -1,8 +1,8 @@
 import React from "react";
 import NavLink from "./NavLink";
-import User from "../models/User";
-import ProgressBar from "./ProgressBar";
-import FileUtils from "../utils/FileUtils";
+import User from "../../models/User";
+import ProgressBar from "../utils/ProgressBar";
+import FileUtils from "../../utils/FileUtils";
 
 export default function MainNav({ user } : { user: User }): JSX.Element {
 

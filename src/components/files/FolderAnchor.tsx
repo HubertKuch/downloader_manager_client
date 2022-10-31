@@ -1,5 +1,5 @@
 import React from "react";
-import Folder from "../models/Folder";
+import Folder from "../../models/Folder";
 
 interface FolderAnchorProps {
     folder: Folder;
