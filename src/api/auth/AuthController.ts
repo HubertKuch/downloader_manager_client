@@ -1,8 +1,9 @@
 "use strict";
 
-import User, {UserRole} from "../models/User";
-import UserAPIConsumer from "../api/UserAPIConsumer";
-import BaseApiSettings from "../api/BaseApiSettings";
+import User, {UserRole} from "../../models/User";
+import UserAPIConsumer from "../UserAPIConsumer";
+import BaseApiSettings from "../BaseApiSettings";
+import HttpUtils from "../../utils/HttpUtils";
 
 export default class AuthController {
 
@@ -13,12 +14,9 @@ export default class AuthController {
     }
 
     public static async login(accessCode: string): Promise<any> {
-        const res = await fetch(`${this.baseUrl}/api/v1/auth/login/`, {
-            method: "POST",
+        const res = await HttpUtils.post(`${this.baseUrl}/api/v1/auth/login/`, {
             body: JSON.stringify({accessCode}),
-            headers: {
-                "Content-Type": "application/json"
-            }
+            headers: BaseApiSettings.BASIC_HEADERS,
         });
 
         return await res.json();

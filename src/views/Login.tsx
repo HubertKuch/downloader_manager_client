@@ -1,5 +1,5 @@
 import React from "react";
-import AuthController from "../auth/AuthController";
+import AuthController from "../api/auth/AuthController";
 
 export default function Login(): JSX.Element {
 

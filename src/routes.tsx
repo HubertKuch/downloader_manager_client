@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import Main from "./views/Main";
 import Login from "./views/Login";
-import AuthController from "./auth/AuthController";
+import AuthController from "./api/auth/AuthController";
 import Admin from "./views/Admin";
 import AdminCreateAccount from "./views/AdminCreateAccount";
 import History from "./views/History";

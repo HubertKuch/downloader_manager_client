@@ -8,18 +8,16 @@ import {SimpleAddFileStrategy} from "./SimpleAddFileStrategy";
 import AddAllFilesFromFolderStrategy from "./AddAllFilesFromFolderStrategy";
 import Folder from "../models/Folder";
 import BaseApiSettings from "./BaseApiSettings";
+import HttpUtils from "../utils/HttpUtils";
 
 export default class FileAPIConsumer {
 
     private static baseUrl: string = BaseApiSettings.BASE_URL;
 
     public static async getUserFolders(): Promise<Folder[]> {
-        const res = await fetch(`${this.baseUrl}/api/v1/files/`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            }
-        })
+        const res = await HttpUtils.get(`${this.baseUrl}/api/v1/files/`, {
+            headers: BaseApiSettings.BASIC_HEADERS,
+        });
 
         return await res.json();
     }
@@ -36,24 +34,16 @@ export default class FileAPIConsumer {
     }
 
     public static async downloadFile(fileId: string): Promise<File|Error> {
-        const res = await fetch(`${this.baseUrl}/api/v1/files/resource/${fileId}/`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json"
-            }
+        const res = await HttpUtils.get(`${this.baseUrl}/api/v1/files/resource/${fileId}/`, {
+            headers: BaseApiSettings.BASIC_HEADERS,
         })
 
         return await res.json();
     }
 
     public static async removeFile(folderId: string, fileId: string): Promise<File|Error> {
-        const res = await fetch(`${this.baseUrl}/api/v1/files/file/`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json"
-            },
+        const res = await HttpUtils.delete(`${this.baseUrl}/api/v1/files/file/`, {
+            headers: BaseApiSettings.BASIC_HEADERS,
             body: JSON.stringify({folderId, fileId})
         });
 
@@ -61,12 +51,8 @@ export default class FileAPIConsumer {
     }
 
     public static async removeFolder(folderId: string): Promise<File|Error> {
-        const res = await fetch(`${this.baseUrl}/api/v1/files/folder/`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json"
-            },
+        const res = await HttpUtils.delete(`${this.baseUrl}/api/v1/files/folder/`, {
+            headers: BaseApiSettings.BASIC_HEADERS,
             body: JSON.stringify({folderId})
         });
 
