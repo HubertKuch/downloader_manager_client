@@ -3,6 +3,7 @@ import NavLink from "./NavLink";
 import User from "../../models/User";
 import ProgressBar from "../utils/ProgressBar";
 import FileUtils from "../../utils/FileUtils";
+import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
 
 export default function MainNav({ user } : { user: User }): JSX.Element {
 
@@ -11,7 +12,7 @@ export default function MainNav({ user } : { user: User }): JSX.Element {
     const howManyPercentIsUsed = (currentTransfer/startTransfer)*100;
 
     return (
-        <nav className={"h-full fixed text-white items-center pt-4 pb-4"} style={{background: "#2a263e", width: "15%"}}>
+        <nav className={"h-full fixed  items-center pt-4 pb-4"} style={{background: ChosenThemeSettings.SECONDARY_BACKGROUND_COLOR, width: "15%", color: ChosenThemeSettings.BASE_FONT_COLOR}}>
             <main className={"w-full"}>
                 <NavLink text={"Files"} link={"/"} icon={<i className="fa-regular fa-folder"></i>} />
                 <NavLink text={"History"} link={"/history"} icon={<i className="fa-solid fa-timeline"></i>} />

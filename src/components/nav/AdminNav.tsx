@@ -1,9 +1,10 @@
 import React from "react";
 import NavLink from "./NavLink";
+import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
 
 export default function AdminNav(): JSX.Element {
     return (
-        <nav className={"h-full fixed text-white items-center pt-4 pb-4"} style={{background: "#2a263e", width: "15%"}}>
+        <nav className={"h-full fixed  items-center pt-4 pb-4"} style={{background: ChosenThemeSettings.SECONDARY_BACKGROUND_COLOR, width: "15%", color: ChosenThemeSettings.BASE_FONT_COLOR}}>
             <main className={"w-full"}>
                 <NavLink
                     text={"Accounts"}

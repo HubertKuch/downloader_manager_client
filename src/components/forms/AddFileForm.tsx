@@ -77,7 +77,7 @@ export default function AddFileForm({
                 />
             </label>
 
-            <button className={"w-1/6 rounded p-1 text-white"} style={{background: ChosenThemeSettings.SUBMIT_BUTTON_COLOR}}>Add file</button>
+            <button className={"w-1/6 rounded p-1 "} style={{background: ChosenThemeSettings.SUBMIT_BUTTON_COLOR}}>Add file</button>
 
         </form>
     )

@@ -41,7 +41,7 @@ export default function AccountForm({ handler }: { handler: (event: React.FormEv
                 />
             </label>
 
-            <button className={"w-1/6 rounded p-1 text-white"} style={{background: ChosenThemeSettings.SUBMIT_BUTTON_COLOR}}>Create</button>
+            <button className={"w-1/6 rounded p-1 "} style={{background: ChosenThemeSettings.SUBMIT_BUTTON_COLOR}}>Create</button>
 
         </form>
     );

@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import ContextMenuElement from "../contextMenu/ContextMenuElement";
 import ContextMenu from "../../utils/ContextMenu";
 import MainContextMenu from "../../utils/MainContextMenu";
+import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
 
 export default function MainLayout({ children, nav }: { children: any, nav: JSX.Element }): JSX.Element {
     const mainRef = useRef<HTMLDivElement>(null);
@@ -30,7 +31,7 @@ export default function MainLayout({ children, nav }: { children: any, nav: JSX.
     return (
         <>
             {nav}
-            <div ref={mainRef} className={"min-h-full float-right p-4 scroll-auto"} style={{width: "85%", background: "#2c2842"}}>
+            <div ref={mainRef} className={"min-h-full float-right p-4 scroll-auto"} style={{ color: ChosenThemeSettings.BASE_FONT_COLOR, width: "85%", background: ChosenThemeSettings.PRIMARY_BACKGROUND_COLOR}}>
                 {children}
             </div>
             <ContextMenuElement ref={contextMenuRef} />

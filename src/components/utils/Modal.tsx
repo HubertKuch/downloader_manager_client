@@ -1,4 +1,5 @@
 import React from "react";
+import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
 
 interface ModalProps {
     children: JSX.Element;
@@ -29,7 +30,7 @@ export default function Modal({ isOpen, onClose, children, title }: ModalProps):
                     rounded
                     p-4
                 `}
-                 style={{ background: "#2a263e" }}
+                 style={{ background: ChosenThemeSettings.PRIMARY_BACKGROUND_COLOR }}
             >
                 <header className={"grid grid-cols-2 grid-rows-1 mb-4"}>
                     <div>

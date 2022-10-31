@@ -12,6 +12,7 @@ import HeaderText from "../components/utils/HeaderText";
 import FolderAnchor from "../components/files/FolderAnchor";
 import FileAnchor from "../components/files/FileAnchor";
 import ContextMenuElement from "../components/contextMenu/ContextMenuElement";
+import ChosenThemeSettings from "../settings/ChosenThemeSettings";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
@@ -133,8 +134,8 @@ export default function Main(): JSX.Element {
                 </div>
                 <div className={"text-right"}>
                     <button
-                        className={"text-white p-2 pl-4 pr-4 rounded-xl"}
-                        style={{background: "#2cb589"}}
+                        className={" p-2 pl-4 pr-4 rounded-xl"}
+                        style={{background: ChosenThemeSettings.DOMAIN_COLOR}}
                         onClick={() => setIsAddFileModalOpen(true)}
                     >
                             <span className={"mr-3"}>

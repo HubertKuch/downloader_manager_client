@@ -1,5 +1,6 @@
 import React from "react";
 import AuthController from "../api/auth/AuthController";
+import ChosenThemeSettings from "../settings/ChosenThemeSettings";
 
 export default function Login(): JSX.Element {
 
@@ -34,8 +35,8 @@ export default function Login(): JSX.Element {
         <>
             <div className={"w-1/4 mr-auto ml-auto top-1/2 relative"} style={{transform: "translateY(-50%)"}}>
                 <form
-                    className={"grid grid-cols-1 grid-rows-3 gap-4 text-white p-5 rounded"}
-                    style={{background: "#252728"}}
+                    className={"grid grid-cols-1 grid-rows-3 gap-4  p-5 rounded"}
+                    style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     onSubmit={onSubmit}
                 >
                     <label>
@@ -46,7 +47,7 @@ export default function Login(): JSX.Element {
                         Access code <br/>
                         <input
                             placeholder={"cb984025-13c5-4e16-9b56-345bbc663ca1"}
-                            style={{background: "#323644"}}
+                            style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                             type="text"
                             name={"accessCode"}
                             className={"rounded outline-none border-none p-2 w-full"}
@@ -54,7 +55,7 @@ export default function Login(): JSX.Element {
                     </label>
                     <label>
                         <button
-                            style={{background: "#36a688", transform: "translateX(-50%)"}}
+                            style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR, transform: "translateX(-50%)"}}
                             className={"pt-1 pb-1 pl-4 pr-4 rounded absolute left-1/2"}
                         >
                             Log in

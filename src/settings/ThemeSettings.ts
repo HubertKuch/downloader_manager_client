@@ -9,4 +9,7 @@ export default interface ThemeSettings {
     BUTTON_COLOR: string;
     SUBMIT_BUTTON_COLOR: string;
     INPUT_BACKGROUND_COLOR: string;
+    PRIMARY_BACKGROUND_COLOR: string;
+    SECONDARY_BACKGROUND_COLOR: string;
+    CONTEXT_MENU_COLOR: string;
 }
