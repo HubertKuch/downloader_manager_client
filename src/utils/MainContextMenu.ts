@@ -7,7 +7,6 @@ import FILES_CONTEXT_MENU_ACTIONS from "../actions/fileContextMenuActions";
 import FOLDER_CONTEXT_MENU_ACTIONS from "../actions/folderContextMenuActions";
 
 export default class MainContextMenu implements ContextMenu {
-    private actions: ContextMenuAction[];
     private readonly definedActions: { [key: string]: ContextMenuAction[] } = {
         "file-actions": FILES_CONTEXT_MENU_ACTIONS,
         "folder-actions": FOLDER_CONTEXT_MENU_ACTIONS
@@ -22,8 +21,7 @@ export default class MainContextMenu implements ContextMenu {
     };
     private contextMenuElement: React.MutableRefObject<HTMLDivElement>;
 
-    constructor(actions: ContextMenuAction[], contextMenuElement: React.MutableRefObject<HTMLDivElement>) {
-        this.actions = actions;
+    constructor(contextMenuElement: React.MutableRefObject<HTMLDivElement>) {
         this.contextMenuElement = contextMenuElement;
     }
 
@@ -77,7 +75,6 @@ export default class MainContextMenu implements ContextMenu {
 
     setActions(currentTarget: HTMLElement): HTMLElement | null {
         const target: HTMLElement = this.getTarget(currentTarget);
-        this.actions = [];
         this.contextMenuElement.current.innerHTML = "";
 
         if (!target) return null;

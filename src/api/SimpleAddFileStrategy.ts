@@ -1,5 +1,4 @@
 import {IncomingFileDTO, IncomingFolderDTO} from "../models/IncomingFileDTO";
-import File from "../models/File";
 import Error from "../models/Error";
 import AddFileStrategy from "../models/AddFileStrategy";
 import Folder from "../models/Folder";

@@ -5,7 +5,6 @@ import {DEFAULT_USER, User} from "../models/User";
 import UserAPIConsumer from "../api/UserAPIConsumer";
 import HeaderText from "../components/HeaderText";
 import SingleHistory from "../components/SingleHistory";
-import History from "../models/History";
 
 export default function History(): JSX.Element {
     const [user, setUser] = useState<User>(DEFAULT_USER);

@@ -6,7 +6,7 @@ import MainContextMenu from "../utils/MainContextMenu";
 export default function MainLayout({ children, nav }: { children: any, nav: JSX.Element }): JSX.Element {
     const mainRef = useRef<HTMLDivElement>(null);
     const contextMenuRef = useRef<HTMLDivElement>(null);
-    const contextMenu: ContextMenu = new MainContextMenu([], contextMenuRef);
+    const contextMenu: ContextMenu = new MainContextMenu(contextMenuRef);
 
     useLayoutEffect(() => {
         document.addEventListener("click", () => contextMenu.hide());

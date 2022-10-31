@@ -88,7 +88,7 @@ export default function Main(): JSX.Element {
 
         setIsWaiting(true);
 
-        waitingLayer.current.classList.toggle("hiden");
+        waitingLayer.current.classList.toggle("hidden");
 
         const url: string = (event.currentTarget.querySelector("[name=url]") as HTMLInputElement).value;
         const filename: string = (event.currentTarget.querySelector("[name=filename]") as HTMLInputElement).value;

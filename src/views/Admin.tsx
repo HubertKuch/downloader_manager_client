@@ -55,7 +55,6 @@ export default function Admin(): JSX.Element {
                                    id,
                                    role,
                                    accessCode,
-                                   transfer,
                                    folders,
                                    expiringDate,
                                    hasActiveAccount,
