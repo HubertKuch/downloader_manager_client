@@ -5,33 +5,22 @@ import FileAPIConsumer from "../../api/FileAPIConsumer";
 import FileUtils from "../../utils/FileUtils";
 import Folder from "../../models/Folder";
 import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
+import FileProps from "./FileProps";
 
-interface FolderAnchorProps {
-    file: File;
-    folder: Folder;
-}
 
-export default function ({ file, folder }: FolderAnchorProps){
+
+export default function ({ file, folder, downloadFileCallback }: FileProps){
     const downloadRef = useRef<HTMLAnchorElement>();
 
     return (
         <div
-            className={"w-40 h-40 p-1 rounded directory-anchor"}
+            className={"w-40 h-40 p-1 rounded directory-anchor grid"}
             style={{ background: ChosenThemeSettings.FILE_COLOR }}
             data-context-menu-actions-name={"file-actions"}
             data-file-id={file.id}
             data-folder-id={folder.id}
             title={file.name}
-            onClick={async () => {
-                const res: Error|File = await FileAPIConsumer.downloadFile(file.id);
-
-                if (res.hasOwnProperty("error")) {
-                    
-                    return;
-                }
-
-                window.open((res as File).path);
-            }}
+            onClick={() => downloadFileCallback(file)}
         >
             <div className={"icon text-center"}>
                 <i className={FileUtils.pickIconClasses(file)}></i>

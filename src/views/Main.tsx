@@ -9,10 +9,13 @@ import {DEFAULT_USER, User} from "../models/User";
 import Folder from "../models/Folder";
 import UserAPIConsumer from "../api/UserAPIConsumer";
 import HeaderText from "../components/utils/HeaderText";
-import FolderAnchor from "../components/files/FolderAnchor";
-import FileAnchor from "../components/files/FileAnchor";
+import FolderTile from "../components/files/FolderTile";
+import FileTile from "../components/files/FileTile";
 import ContextMenuElement from "../components/contextMenu/ContextMenuElement";
 import ChosenThemeSettings from "../settings/ChosenThemeSettings";
+import File from "../models/File";
+import FileInList from "../components/files/FileInList";
+import FolderInList from "../components/files/FolderInList";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
@@ -27,6 +30,7 @@ export default function Main(): JSX.Element {
     const actionsRef = useRef<HTMLDivElement>();
     const downloadFolderRef = useRef<HTMLButtonElement>();
     const contextMenuRef = useRef<HTMLDivElement>();
+    const isTilesStructure = localStorage.getItem("file_structure_type") === "TILES";
 
     useEffect(() => {
         
@@ -52,7 +56,22 @@ export default function Main(): JSX.Element {
                 .forEach(el => (el as HTMLDivElement).click());
         });
 
-        setShowedFiles(folder.files.map(file => <FileAnchor key={Math.random()} folder={folder} file={file} />));
+        const downloadFile = async (file: File) => {
+            const res: Error|File = await FileAPIConsumer.downloadFile(file.id);
+
+            if (res.hasOwnProperty("error")) {
+
+                return;
+            }
+
+            window.open((res as File).path);
+        };
+
+        setShowedFiles(folder.files.map(file => {
+            return isTilesStructure ?
+                <FileTile downloadFileCallback={downloadFile} key={Math.random()} folder={folder} file={file} /> :
+                <FileInList downloadFileCallback={downloadFile} key={Math.random()} folder={folder} file={file} />;
+        }));
     }
 
     const getUserFiles = () => {
@@ -101,6 +120,7 @@ export default function Main(): JSX.Element {
         setFolders(await FileAPIConsumer.getUserFolders())
     }
 
+
     getUserFiles();
 
     return (
@@ -133,13 +153,17 @@ export default function Main(): JSX.Element {
             </header>
             <main className={"text-xl h-full scroll-auto"}>
 
-                <div ref={mainContentRef} className={"w-full grid files"}>
+                <div ref={mainContentRef} className={`w-full ${isTilesStructure ? 'grid' : ''} files`}>
                     {
-                        folders.map(folder => <FolderAnchor key={Math.random()} showFolder={showFolder} folder={folder} />)
+                        folders.map(folder => {
+                            return isTilesStructure ?
+                                <FolderTile key={folder.id} showFolder={showFolder} folder={folder} /> :
+                                <FolderInList key={folder.id} folder={folder} showFolder={showFolder} />
+                        })
                     }
                 </div>
 
-                <div ref={filesInFolderContentRef} className={"w-full grid files hidden"}>
+                <div ref={filesInFolderContentRef} className={`w-full ${isTilesStructure ? 'grid' : ''} files hidden`}>
                     {showedFiles}
                 </div>
 

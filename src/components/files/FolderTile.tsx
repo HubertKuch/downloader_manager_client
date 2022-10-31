@@ -1,19 +1,14 @@
 import React from "react";
-import Folder from "../../models/Folder";
 import ChosenThemeSettings from "../../settings/ChosenThemeSettings";
+import FolderProps from "./FolderProps";
 
-interface FolderAnchorProps {
-    folder: Folder;
-    showFolder: Function;
-}
-
-export default function ({ folder, showFolder }: FolderAnchorProps){
+export default function ({ folder, showFolder }: FolderProps){
     return (
         <div
             title={folder.name}
             data-context-menu-actions-name={"folder-actions"}
             data-folder-id={folder.id}
-            onClick={() => showFolder(folder.id)} className={"w-40 h-40 p-1 rounded directory-anchor"}
+            onClick={() => showFolder(folder.id)} className={"w-40 h-40 p-1 rounded directory-anchor grid"}
             style={{ background: ChosenThemeSettings.FOLDER_COLOR }}
         >
             <div className={"icon text-center"}>

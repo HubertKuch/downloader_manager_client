@@ -38,7 +38,6 @@ tr>td {
 }
 
 .directory-anchor {
-    display: grid;
     grid-template-areas: "icon" "title" "meta";
     grid-template-rows: 70% 15% 15%;
 }
