@@ -8,6 +8,7 @@ import AuthController from "./api/auth/AuthController";
 import Admin from "./views/Admin";
 import AdminCreateAccount from "./views/AdminCreateAccount";
 import History from "./views/History";
+import Settings from "./views/Settings";
 
 const isLoggedInLoader = async () => {
     if (!AuthController.isLoggedIn()) {
@@ -30,6 +31,11 @@ export default createBrowserRouter([
     {
         path: "/history",
         element: <History />,
+        loader: isLoggedInLoader
+    },
+    {
+        path: "/settings",
+        element: <Settings />,
         loader: isLoggedInLoader
     },
     {

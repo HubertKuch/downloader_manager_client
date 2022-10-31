@@ -16,6 +16,7 @@ export default function MainNav({ user } : { user: User }): JSX.Element {
             <main className={"w-full"}>
                 <NavLink text={"Files"} link={"/"} icon={<i className="fa-regular fa-folder"></i>} />
                 <NavLink text={"History"} link={"/history"} icon={<i className="fa-solid fa-timeline"></i>} />
+                <NavLink text={"Settings"} link={"/settings"} icon={<i className="fa-solid fa-gears"></i>} />
             </main>
             <footer className={"absolute bottom-0 p-4 text-xl w-full"}>
                 <div>
