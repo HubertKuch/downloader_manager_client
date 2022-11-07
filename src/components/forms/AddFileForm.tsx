@@ -12,14 +12,16 @@ export default function AddFileForm({
     const allFilesCheckbox = useRef<HTMLInputElement>(null);
     const filesLabelRef = useRef<HTMLLabelElement>(null);
     const hasPasswordCheckboxRef = useRef<HTMLInputElement>(null);
-    const passwordLabelRef = useRef<HTMLLabelElement>(null);
+    const folderPasswordRef = useRef<HTMLLabelElement>(null);
+    const hamsterPasswordRef = useRef<HTMLLabelElement>(null);
 
     const showOrHideFileInput = () => {
         filesLabelRef.current.classList.toggle("hidden");
     }
 
     const showOrHidePasswordLabel = () => {
-        passwordLabelRef.current.classList.toggle("hidden");
+        folderPasswordRef.current.classList.toggle("hidden");
+        hamsterPasswordRef.current.classList.toggle("hidden");
     };
 
     return (
@@ -67,11 +69,21 @@ export default function AddFileForm({
                 />
             </label>
 
-            <label ref={passwordLabelRef} className={"hidden"}>
-                Password <br/>
+            <label ref={folderPasswordRef} className={"hidden"}>
+                Folder password <br/>
                 <input
-                    type="text"
-                    name={"password"}
+                    type="password"
+                    name={"folder-password"}
+                    style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
+                    className={"outline-none p-2 rounded-2xl w-2/4"}
+                />
+            </label>
+
+            <label ref={hamsterPasswordRef} className={"hidden"}>
+                User password <br/>
+                <input
+                    type="password"
+                    name={"hamster-password"}
                     style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                 />
