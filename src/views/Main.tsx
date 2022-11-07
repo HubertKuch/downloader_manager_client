@@ -16,6 +16,9 @@ import ChosenThemeSettings from "../settings/ChosenThemeSettings";
 import File from "../models/File";
 import FileInList from "../components/files/FileInList";
 import FolderInList from "../components/files/FolderInList";
+import FormUtils from "../utils/FormUtils";
+import {IncomingFileDTO} from "../models/IncomingFileDTO";
+import FilesParser from "../FilesParser";
 
 export default function Main(): JSX.Element {
     const [folders, setFolders] = useState<Folder[]>([]);
@@ -96,16 +99,10 @@ export default function Main(): JSX.Element {
         setIsWaiting(true);
 
         waitingLayer.current.classList.toggle("hidden");
-
-        const url: string = (event.currentTarget.querySelector("[name=url]") as HTMLInputElement).value;
-        const filename: string = (event.currentTarget.querySelector("[name=filename]") as HTMLInputElement).value;
         const errorContainer: HTMLDivElement = (event.currentTarget.querySelector(".error-container") as HTMLDivElement);
         const wholeFolderCheckbox: HTMLInputElement = (event.currentTarget.querySelector("[name=\"whole-folder\"]") as HTMLInputElement);
 
-        const res: Error|Folder = await FileAPIConsumer.addFile(
-            {url, fileName: filename},
-            wholeFolderCheckbox.checked
-        );
+        const res: Error|Folder = await FileAPIConsumer.addFile(FilesParser.parseToIncoming(FormUtils.getAsObject(event.currentTarget)), wholeFolderCheckbox.checked);
 
         if (res) {
             setIsWaiting(false);

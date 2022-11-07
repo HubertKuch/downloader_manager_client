@@ -14,6 +14,7 @@ export default function AddFileForm({
     const hasPasswordCheckboxRef = useRef<HTMLInputElement>(null);
     const folderPasswordRef = useRef<HTMLLabelElement>(null);
     const hamsterPasswordRef = useRef<HTMLLabelElement>(null);
+    const hasPasswordInputRef = useRef<HTMLInputElement>(null);
 
     const showOrHideFileInput = () => {
         filesLabelRef.current.classList.toggle("hidden");
@@ -22,11 +23,16 @@ export default function AddFileForm({
     const showOrHidePasswordLabel = () => {
         folderPasswordRef.current.classList.toggle("hidden");
         hamsterPasswordRef.current.classList.toggle("hidden");
+        const target = hasPasswordCheckboxRef.current;
+
+        target.value = `${!!target.value}`;
+
     };
 
     return (
         <form className={"grid gap-4"} onSubmit={handler}>
             <div className={"error-container text-red-400"}></div>
+            <input ref={hasPasswordInputRef} type="hidden" name={"hasPassword"} value={"false"} />
             <label>
                 Url to folder <br/>
                 <input
@@ -55,7 +61,7 @@ export default function AddFileForm({
                     style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                     placeholder={"Example file.txt"}
-                    name={"filename"}
+                    name={"fileName"}
                 />
             </label>
 
@@ -64,7 +70,7 @@ export default function AddFileForm({
                 <input
                     ref={hasPasswordCheckboxRef}
                     type="checkbox"
-                    name={"has-password"}
+                    name={"hasPassword"}
                     onChange={showOrHidePasswordLabel}
                 />
             </label>
@@ -73,7 +79,7 @@ export default function AddFileForm({
                 Folder password <br/>
                 <input
                     type="password"
-                    name={"folder-password"}
+                    name={"folderPassword"}
                     style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                 />
@@ -83,7 +89,7 @@ export default function AddFileForm({
                 User password <br/>
                 <input
                     type="password"
-                    name={"hamster-password"}
+                    name={"hamsterPassword"}
                     style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
                 />
