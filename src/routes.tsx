@@ -10,6 +10,7 @@ import AdminCreateAccount from "./views/AdminCreateAccount";
 import History from "./views/History";
 import Settings from "./views/Settings";
 import UserAPIConsumer from "./api/UserAPIConsumer";
+import Faq from "./views/Faq";
 
 const isLoggedInLoader = async () => {
     if (!AuthController.isLoggedIn()) {
@@ -45,6 +46,11 @@ export default createBrowserRouter([
     {
         path: "/settings",
         element: <Settings />,
+        loader: isLoggedInLoader
+    },
+    {
+        path: "/faq",
+        element: <Faq />,
         loader: isLoggedInLoader
     },
     {
