@@ -18,6 +18,7 @@ export default function MainNav({ user } : { user: User }): JSX.Element {
                 <NavLink text={"History"} link={"/history"} icon={<i className="fa-solid fa-timeline"></i>} />
                 <NavLink text={"Settings"} link={"/settings"} icon={<i className="fa-solid fa-gears"></i>} />
                 <NavLink text={"FAQ"} link={"/faq"} icon={<i className="fa-solid fa-f"></i>} />
+                <NavLink text={"Report a Bug"} link={"/report-a-bug"} icon={<i className="fa-solid fa-bug"></i>} />
             </main>
             <footer className={"absolute bottom-0 p-4 text-xl w-full"}>
                 <div>
