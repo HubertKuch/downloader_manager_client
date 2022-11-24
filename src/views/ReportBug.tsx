@@ -11,7 +11,6 @@ export default function ReportBug() {
     return (
         <MainLayout nav={<MainNav user={user} />}>
             <HeaderText text={"Report a Bug"} />
-
         </MainLayout>
     )
 }

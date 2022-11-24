@@ -34,18 +34,18 @@ export default function AddFileForm({
             <div className={"error-container text-red-400"}></div>
             <input ref={hasPasswordInputRef} type="hidden" name={"hasPassword"} value={"false"} />
             <label>
-                Url to folder <br/>
+                Wpisz adres folderu (URL)  <br/>
                 <input
                     type="text"
                     style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     name={"url"}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
-                    placeholder={"https://chomikuj.pl/ExampleChomik/Test+folder/folder"}
+                    placeholder={"Przykladowy url https://chomikuj.pl/ExampleChomik/Test+folder/folder"}
                 />
             </label>
 
             <label>
-                All files in folder {' '}
+                Czy pobrac wszystkie pliki w folderze? {' '}
                 <input
                     name={"whole-folder"}
                     ref={allFilesCheckbox}
@@ -55,18 +55,18 @@ export default function AddFileForm({
             </label>
             
             <label ref={filesLabelRef}>
-                File name <br/>
+                Wpisz Nazwę pliku (Przykład.txt) <br/>
                 <input
                     type={"text"}
                     style={{background: ChosenThemeSettings.INPUT_BACKGROUND_COLOR}}
                     className={"outline-none p-2 rounded-2xl w-2/4"}
-                    placeholder={"Example file.txt"}
+                    placeholder={"Np.: przykladowy plik.txt"}
                     name={"fileName"}
                 />
             </label>
 
             <label>
-                With password{' '}
+                Folder lub chomik ma haslo?{' '}
                 <input
                     ref={hasPasswordCheckboxRef}
                     type="checkbox"
@@ -76,7 +76,7 @@ export default function AddFileForm({
             </label>
 
             <label ref={folderPasswordRef} className={"hidden"}>
-                Folder password <br/>
+                Wpisz hasło do danego folderu <br/>
                 <input
                     type="password"
                     name={"folderPassword"}
@@ -86,7 +86,7 @@ export default function AddFileForm({
             </label>
 
             <label ref={hamsterPasswordRef} className={"hidden"}>
-                User password <br/>
+                Gdy folder ma hasło na profil użytkownika <br/>
                 <input
                     type="password"
                     name={"hamsterPassword"}
